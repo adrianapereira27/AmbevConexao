@@ -11,13 +11,18 @@ namespace AmbevConexao.Data
         public DbSet<Turma> Turma { get; set; }
         public DbSet<TurmaAluno> TurmaAluno { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public Contexto (DbContextOptions<Contexto> options): base(options)
+        {
+
+        }
+
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=SABRLBP7NS53\\SQLEXPRESS;Database=AmbevConexao;Trusted_Connection=True;TrustServerCertificate=True;")
                 .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information); // grava log das queries do linq
             
             base.OnConfiguring(optionsBuilder);
-        }
+        }*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AlunoMap());

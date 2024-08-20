@@ -1,5 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿
+using AmbevConexao.Data;
 using AmbevConexao.Data.Repository;
 using AmbevConexao.Domain.Model;
 using AmbevConexao.Domain.Model.Enum;
@@ -7,7 +7,8 @@ using AmbevConexao.Domain.Model.Enum;
 class Program
 {
     static void Main(string[] args)
-    {
+    {        
+
         /*IncluirAluno();
         var alunos = ConsultarTodosAlunos();
 
@@ -17,78 +18,94 @@ class Program
             ExcluirAluno(alunos[1].Id);
         }*/
 
-        IncluirProfessor();
+        /*IncluirProfessor();
         var professores = ConsultarTodosProfessores();
 
         if (professores?.Count > 1)
         {
             AlterarNomeProfessor(professores[0]);
             ExcluirProfessor(professores[1].Id);
-        }
-
-
+        }*/
     }
-
-    private static void IncluirAluno()
+    /*private static void IncluirAluno()
     {
-        var repoAluno = new AlunoRepository();
-        repoAluno.Incluir(Aluno.NovoAluno("Adriana"));
-        repoAluno.Incluir(Aluno.NovoAluno("Rodrigo"));
-        repoAluno.Incluir(Aluno.NovoAluno("Amanda"));
+        using (var contexto = new Contexto())
+        {
+            var repoAluno = new AlunoRepository(contexto);
+            repoAluno.Incluir(Aluno.NovoAluno("Adriana"));
+            repoAluno.Incluir(Aluno.NovoAluno("Rodrigo"));
+            repoAluno.Incluir(Aluno.NovoAluno("Amanda"));
+        }
     }
-
     private static void AlterarNomeAluno(Aluno aluno)
     {
-        var repoAluno = new AlunoRepository();
-        repoAluno.Alterar(aluno.AlterarNome("Adriana Pereira"));
+        using (var contexto = new Contexto())
+        {
+            var repoAluno = new AlunoRepository(contexto);
+            repoAluno.Alterar(aluno.AlterarNome("Adriana Pereira"));
+        }
     }
-
     private static List<Aluno> ConsultarTodosAlunos()
     {
-        var repoAluno = new AlunoRepository();
-        return repoAluno.SelecionarTudo();
+        using (var contexto = new Contexto())
+        {
+            var repoAluno = new AlunoRepository(contexto);
+            return repoAluno.SelecionarTudo();
+        }
     }
-
     private static void ExcluirAluno(int id)
     {
-        var repoAluno = new AlunoRepository();
-        repoAluno.Excluir(id);
+        using (var contexto = new Contexto())
+        {
+            var repoAluno = new AlunoRepository(contexto);
+            repoAluno.Excluir(id);
+        }
     }
-
     private static void IncluirProfessor()
     {
-        var repoProfessor = new ProfessorRepository();
-        repoProfessor.Incluir(Professor.NovoProfessor("Maria", "maria@gmail.com", Turno.Manha));
-        repoProfessor.Incluir(Professor.NovoProfessor("Jose", "jose@gmail.com", Turno.Tarde));
-        repoProfessor.Incluir(Professor.NovoProfessor("Luisa", "luisa@gmail.com", Turno.Integral));
+        using (var contexto = new Contexto())
+        {
+            var repoProfessor = new ProfessorRepository(contexto);
+            repoProfessor.Incluir(Professor.NovoProfessor("Maria", "maria@gmail.com", Turno.Manha));
+            repoProfessor.Incluir(Professor.NovoProfessor("Jose", "jose@gmail.com", Turno.Tarde));
+            repoProfessor.Incluir(Professor.NovoProfessor("Luisa", "luisa@gmail.com", Turno.Integral));
+        }
     }
-
     private static void AlterarNomeProfessor(Professor professor)
     {
-        var repoProfessor = new ProfessorRepository();
-        repoProfessor.Alterar(professor.AlterarNome("Maria Joaquina"));
+        using (var contexto = new Contexto())
+        {
+            var repoProfessor = new ProfessorRepository(contexto);
+            repoProfessor.Alterar(professor.AlterarNome("Maria Joaquina"));
+        }
     }
-
     private static List<Professor> ConsultarTodosProfessores()
     {
-        var repoProfessor = new ProfessorRepository();
-        return repoProfessor.SelecionarTudo();
+        using (var contexto = new Contexto())
+        {
+            var repoProfessor = new ProfessorRepository(contexto);
+            return repoProfessor.SelecionarTudo();
+        }
     }
-
     private static void ExcluirProfessor(int id)
     {
-        var repoProfessor = new ProfessorRepository();
-        repoProfessor.Excluir(id);
+        using (var contexto = new Contexto())
+        {
+            var repoProfessor = new ProfessorRepository(contexto);
+            repoProfessor.Excluir(id);
+        }
     }
-
     private static void SelecionarTurmaAluno()
     {
-        TurmaAlunoRepository repo = new TurmaAlunoRepository();
+        using (var contexto = new Contexto())
+        {
+            TurmaAlunoRepository repo = new TurmaAlunoRepository(contexto);
 
-        var dados = repo.SelecionarTudo();
+            var dados = repo.SelecionarTudo();
 
-        TurmaAlunoRepository repo1 = new TurmaAlunoRepository();
+            TurmaAlunoRepository repo1 = new TurmaAlunoRepository(contexto);
 
-        var dadosCompletos = repo1.SelecionarTudoCompleto();        
-    }
+            var dadosCompletos = repo1.SelecionarTudoCompleto();
+        }
+    }*/
 }

@@ -1,31 +1,38 @@
 ﻿using AmbevConexao.API.Dto;
-using AmbevConexao.Data.Repository;
+using AmbevConexao.API.Filtros;
+using AmbevConexao.Data;
 using AmbevConexao.Domain.Model;
+using AmbevConexao.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AmbevConexao.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlunoController : Controller
+    public class AlunoController : ControllerBase
     {
-        private readonly AlunoRepository _repository;
+        private readonly IAlunoRepository _repository;        
 
-        public AlunoController()
+        public AlunoController(IAlunoRepository repository)
         {
-            _repository = new AlunoRepository();
+            _repository = repository;
         }
 
         [HttpGet]
-        public IEnumerable<Aluno> Get()
+        public ActionResult<IEnumerable<Aluno>> Get()
         {
-            return _repository.SelecionarTudo();
+            var alunos = _repository.SelecionarTudo();
+            return alunos == null ? NotFound() : alunos;
         }
 
         [HttpGet("{id}")]
-        public Aluno Get(int id)
+        public ActionResult<Aluno> Get(int id)
         {
-            return _repository.SelecionarPorId(id);
+            var aluno = _repository.Selecionar(id);
+
+            if (aluno == null) throw new NotFoundException($"O aluno com id {id} não existe em nosso sistema");
+
+            return aluno;
         }
 
         [HttpPost]

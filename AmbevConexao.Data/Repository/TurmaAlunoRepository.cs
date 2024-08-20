@@ -1,19 +1,23 @@
 ﻿using AmbevConexao.Domain.Model;
+using AmbevConexao.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace AmbevConexao.Data.Repository
 {
-    public class TurmaAlunoRepository : BaseRepository<TurmaAluno>
+    public class TurmaAlunoRepository : BaseRepository<TurmaAluno>, ITurmaAlunoRepository
     {
-        /*protected readonly Contexto contexto;
-        public TurmaAlunoRepository()
+        protected readonly Contexto _contexto;
+
+        public TurmaAlunoRepository(Contexto contexto) : base(contexto) { }
+
+        /*public TurmaAlunoRepository(Contexto contexto)
         {
-            contexto = new Contexto();
+            _contexto = contexto;
         }*/
 
         public List<TurmaAluno> SelecionarTudoCompleto()
         {
-            return contexto.TurmaAluno
+            return _contexto.TurmaAluno
                 .Include(x => x.Aluno)
                 .Include(x => x.Turma)
                 //.ThenInclude(x => x.Professor)   // ThenInclude é usada, pois o Porfessor está referenciada na classe Turma

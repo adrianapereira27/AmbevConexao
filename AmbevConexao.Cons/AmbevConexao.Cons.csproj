@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AmbevConexao.Data\AmbevConexao.Data.csproj" />
-    <ProjectReference Include="..\AmbevConexao.Domain\AmbevConexao.Domain.csproj" />
   </ItemGroup>
 
 </Project>

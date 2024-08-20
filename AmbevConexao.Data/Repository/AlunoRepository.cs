@@ -1,14 +1,12 @@
 ﻿using AmbevConexao.Domain.Model;
+using AmbevConexao.Domain.Repositories;
 
 namespace AmbevConexao.Data.Repository
 {
-    public class AlunoRepository : BaseRepository<Aluno>    // BaseRepository usa Generics
+    public class AlunoRepository : BaseRepository<Aluno>, IAlunoRepository    // BaseRepository usa Generics
     {
-        /*protected readonly Contexto contexto;   // não é usado, pois está sendo usado Generics
-        public AlunoRepository()
-        {
-            contexto = new Contexto();
-        }*/
+        public AlunoRepository(Contexto contexto) : base(contexto) { }
+       
 
         /*public List<Aluno> SelecionarTudo()
         {
@@ -27,13 +25,13 @@ namespace AmbevConexao.Data.Repository
             contexto.SaveChanges();
         }*/
 
-        public Aluno SelecionarPorId(int id)
+        /*public Aluno SelecionarPorId(int id)
         {
             return contexto.Aluno.FirstOrDefault(x => x.Id == id);
 
             //return contexto.Aluno.Find(id);
 
-        }
+        }*/
 
         /*public void Excluir(int id)
         {

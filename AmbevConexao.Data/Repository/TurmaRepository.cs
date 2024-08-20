@@ -1,15 +1,13 @@
 ﻿using AmbevConexao.Domain.Model;
+using AmbevConexao.Domain.Repositories;
 
 namespace AmbevConexao.Data.Repository
 {
-    public class TurmaRepository : BaseRepository<Turma>  // BaseRepository implementa o Generics
+    public class TurmaRepository : BaseRepository<Turma>, ITurmaRepository  // BaseRepository implementa o Generics
     {
-        /*protected readonly Contexto contexto;
-        public TurmaRepository()
-        {
-            contexto = new Contexto();
-        }
+        public TurmaRepository(Contexto contexto) : base(contexto) { }
 
+        /*
         public List<Turma> SelecionarTudo()
         {
             return contexto.Turma.ToList();

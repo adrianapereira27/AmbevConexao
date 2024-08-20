@@ -1,15 +1,13 @@
 ﻿using AmbevConexao.Domain.Model;
+using AmbevConexao.Domain.Repositories;
 
 namespace AmbevConexao.Data.Repository
 {
-    public class ProfessorRepository : BaseRepository<Professor>    // BaseRepository implementa o Generics
+    public class ProfessorRepository : BaseRepository<Professor> , IProfessorRepository   // BaseRepository implementa o Generics
     {
-        /*protected readonly Contexto contexto;
-        public ProfessorRepository()
-        {
-            contexto = new Contexto();
-        }*/
+        public ProfessorRepository(Contexto contexto) : base(contexto) { }
 
+        
         /*public List<Professor> SelecionarTudo()
         {
             return contexto.Professor.ToList();
@@ -27,20 +25,20 @@ namespace AmbevConexao.Data.Repository
             contexto.SaveChanges();
         }*/
 
-        public Professor SelecionarPorId(int id)
+        /*public Professor SelecionarPorId(int id)
         {
             return contexto.Professor.FirstOrDefault(x => x.Id == id);
 
             //return contexto.Professor.Find(id);
 
-        }
-
-       /* public void Excluir(int id)
-        {
-            var professor = SelecionarPorId(id);
-            contexto.Professor.Remove(professor);
-            contexto.SaveChanges();
         }*/
+
+        /* public void Excluir(int id)
+         {
+             var professor = SelecionarPorId(id);
+             contexto.Professor.Remove(professor);
+             contexto.SaveChanges();
+         }*/
 
         /*public void Dispose()    // libera espaço na memória (executa o garbage colector)
         {
