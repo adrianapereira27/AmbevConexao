@@ -18,5 +18,11 @@
 
            return turma;
         }
+        public Turma AlterarNome(string novoNome)
+        {
+            Nome = novoNome;
+            return this;
+        }
+
     }
 }
